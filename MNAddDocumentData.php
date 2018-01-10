@@ -30,7 +30,9 @@ class MNAddDocumentData extends \Shopware\Components\Plugin
         $userData = $view->getTemplateVars('User');
 
         $service = $this->container->get('shopware_attribute.data_loader');
-        $sqlUserAttributes = $service->load('s_user_attributes', $order->userID);
+        $sqlUserAttributes = [
+            'attributes' => $service->load('s_user_attributes', $order->userID)
+        ];
 
         $userData = $userData + $sqlUserAttributes;
 
